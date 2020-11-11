@@ -1,4 +1,4 @@
-# A tool for detecting avtive fire pixels in a Landsat-8 scene
+# A tool for detecting active fire pixels in a Landsat-8 scene
 
 ## Build image
 ```sh
