@@ -30,7 +30,7 @@ optional arguments:
 
 **Example**: Generating a binary fire mask for scene *LC08_L1TP_045032_20201003_20201015_01_T1*:
 
-Input scene: ![](assets/scene.jpg)
+Input scene: ![](assets/thumbnail.jpg)
 
 Generated fire mask: ![](assets/fire_mask.jpg)
 
