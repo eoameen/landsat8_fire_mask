@@ -28,7 +28,7 @@ optional arguments:
                         Path to putput directory. Default is output/.
 ```
 
-**Example**: Fire mask generated for scene *LC08_L1TP_045032_20201003_20201015_01_T1*
+**Example**: Generating a binary fire mask for scene *LC08_L1TP_045032_20201003_20201015_01_T1*:
 
 ![](assets/fire_mask.jpg)
 
