@@ -1,18 +1,21 @@
-# A tool for detecting active fire pixels in a Landsat-8 scene
+# Landsat-8: Fire mask
+A tool for generating a binary fire mask (1: fire, 0: no-fire) from a Landsat-8 scene.
 
 ## Build image
-```sh
+```bash
 docker build -t landsat8-fire-mask .
 ```
 
 ## Usage
 Generate a binary fire mask given for a Landsat-8 scene given 1) path to band number 5, 2) path to band number 7, and 3) path to output directory. Generated fire mask is stored in `<output_path>/binary_fire_mask.TIF`
 
-```sh
-docker run --rm -it -v `pwd`:/workspace landsat8-fire-mask python3 src/fire_mask.py --help
+```bash
+docker run --rm -it \
+      -v `pwd`:/workspace landsat8-fire-mask python3 src/fire_mask.py \
+      --help
 ```
 
-```sh
+```
 usage: fire_mask.py [-h] -b5 BAND_FIVE -b7 BAND_SEVEN [-o OUTPUT_DIRECTORY]
 
 optional arguments:
@@ -25,13 +28,22 @@ optional arguments:
                         Path to putput directory. Default is output/.
 ```
 
-* Example:
-```sh
+**Example**: Fire mask generated for scene *LC08_L1TP_045032_20201003_20201015_01_T1*
+
+![](assets/fire_mask.jpg)
+
+First, download L8 scene:
+```bash
+aws s3 sync s3://landsat-pds/c1/L8/045/032/LC08_L1TP_045032_20201003_20201015_01_T1/ tests/data/
+```
+
+Then, generate fire mask for scene:
+```bash
 docker run --rm -it \
       -v `pwd`:/workspace \
       landsat8-fire-mask python3 src/fire_mask.py \
-      --band_five tests/data/*/*_B5.TIF \
-      --band_seven tests/data/*/*_B7.TIF \
+      --band_five tests/data/*_B5.TIF \
+      --band_seven tests/data/*_B7.TIF \
       --output_directory output
 ```
 
@@ -67,6 +79,8 @@ docker run \
 ```
 
 ## Testing
+Assuming that scene `L8/045/032/LC08_L1TP_045032_20201003_20201015_01_T1` is in `tests/data`, run:
+
 ```bash
 docker run \
     --rm -it \

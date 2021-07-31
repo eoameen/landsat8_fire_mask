@@ -1,6 +1,8 @@
 import os
 import pytest
 
+from conftest import BAND_FIVE, BAND_SEVEN
+
 from src.fire_mask import _validate_input, generate_fire_mask
 
 # tests for _validate_input (Using valid input)
@@ -8,8 +10,8 @@ from src.fire_mask import _validate_input, generate_fire_mask
     "test_input",
     [
         # case 1
-        {"band_five": "tests/data/LC08_L1TP_045033_20180811_20180811_01_RT/LC08_L1TP_045033_20180811_20180811_01_RT_B5.TIF",
-        "band_seven": "tests/data/LC08_L1TP_045033_20180811_20180811_01_RT/LC08_L1TP_045033_20180811_20180811_01_RT_B7.TIF"},
+        {"band_five": BAND_FIVE,
+        "band_seven": BAND_SEVEN},
     ],
 )
 def test_validate_input_by_valid_input(test_input):
@@ -35,15 +37,14 @@ def test_validate_input_by_invalid_input(test_input):
     "test_input",
     [
         # case 1
-        {"band_five": "tests/data/LC08_L1TP_045033_20180811_20180811_01_RT/LC08_L1TP_045033_20180811_20180811_01_RT_B5.TIF",
-        "band_seven": "tests/data/LC08_L1TP_045033_20180811_20180811_01_RT/LC08_L1TP_045033_20180811_20180811_01_RT_B7.TIF",
-        "output_directory": "output"},
+        {"band_five": BAND_FIVE,
+        "band_seven": BAND_SEVEN},
     ],
 )
-def test_generate_fire_mask(test_input):
+def test_generate_fire_mask(test_input, tmpdir):
     mask_path = generate_fire_mask(
     test_input["band_five"],
     test_input["band_seven"],
-    test_input["output_directory"]
+    tmpdir
     )
     assert os.path.exists(mask_path)
