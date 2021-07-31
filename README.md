@@ -30,7 +30,9 @@ optional arguments:
 
 **Example**: Generating a binary fire mask for scene *LC08_L1TP_045032_20201003_20201015_01_T1*:
 
-![](assets/fire_mask.jpg)
+Input scene: ![](assets/scene.jpg)
+
+Generated fire mask: ![](assets/fire_mask.jpg)
 
 First, download L8 scene:
 ```bash
